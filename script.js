@@ -3,23 +3,18 @@
 const portfolioData = [
     {
         image: "fotky/vez.jpg", // Název souboru tvé fotky v téže složce (může být i odkaz z internetu)
-        title: "Krajina obilného pole ☀️",
-        desc: "Foceno v odpoledních hodinách, ještě s výraznějším sluncem. Cílem bylo zachytit krásné modré nebe a kontrastní barvy zralého obilí."
+        title: "Věž kostela sv. Maří Magdalény v Blatě ⛪",
+        desc: "Pohled na menší věž kostelu v Blatě u Nové Bystřice. Slunce v daný moment zašlo za mrak, a proto se zde ukazují tmavší odstíny a na pozadí modrá obloha."
     },
     {
         image: "fotky/zetor.JPG",
-        title: "Slunečnice při slunci za mrakem. ☁️",
-        desc: "Detailní záběr na skleněnou fasádu nové kancelářské budovy v Praze. Zaměřeno na odrazy nebe a geometrické tvary."
+        title: "Kapota zemědělského stroje Zetor 6340 🚜",
+        desc: "Detailní záběr staršího a zanedbaného stroje Zetor 6340. Pohled byl zachycen při dopoledních hodinách na ostrém slunci."
     },
     {
         image: "fotky/landstejn.JPG",
         title: "Zeď hradu Landštejn 🏰",
         desc: "Pozdější odpolední fotografie pod zapadajícím sluncem, focena skoro od země. Cílem bylo zachytit pocit krásné stavby a její historickou atmosféru."
-    },
-    {
-        image: "fotky/fotka.JPG",
-        title: "Design mobilní aplikace",
-        desc: "Návrh uživatelského rozhraní (UI/UX) pro aplikaci sledující pitný režim. Čistý, minimalistický styl laděný do tmavých barev."
     }
     // Sem můžeš pod sebe vkládat další a další položky podle stejného vzoru!
 ];
