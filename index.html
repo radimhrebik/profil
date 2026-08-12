@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radim Hřebík - Osobní Web</title>
-    <!-- Připojení moderního písma -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    -->
     <link rel="stylesheet" href="style.css">
-
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 </head>
 <body>
 
-    <!-- HLAVNÍ KONTEJNER WEBU -->
     <div class="container">
         
-        <!-- HLAVIČKA S PROFILOVÝMI ÚDAJI -->
         <header class="profile-header">
             <img src="images/profilovka.png" alt="Moje profilová fotka" class="profile-img">
             <h1>Ahoj, já jsem Radim</h1>
             <p class="subtitle">Vítám tě na mém webu. Tady najdeš moje projekty, fotky a kontakt.</p>
             
-            <!-- Přepínač sekcí (Menu) -->
             <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchSection('portfolio')">📷 Portfolio</button>
+                <button class="tab-btn" onclick="switchSection('portfolio')">📷 Projekty</button>
+                <button class="tab-btn active" onclick="switchSection('gallery')">🖼️ Fotogalerie</button>
                 <button class="tab-btn" onclick="switchSection('contact')">📧 Kontakt</button>
             </div>
         </header>
 
-        <!-- SEKCE 1: PORTFOLIO (Dynamická galerie) -->
-        <section id="portfolio-section" class="content-section active">
+        <section id="gallery-section" class="content-section active">
+            <h2>Moje fotogalerie 📸</h2>
+            <p class="section-desc">Kliknutím na jakoukoliv fotku ji zvětšíš i s detailem.</p>
+            
+            <div class="grid" id="gallery-grid"></div>
+        </section>
+
+        <section id="portfolio-section" class="content-section">
             <h2>Moje tvorba/projekty 🎨</h2>
             <p class="section-desc">Kliknutím na jakoukoliv fotku ji zvětšíš i s detailem.</p>
             
-            <!-- Mřížka s fotkami (generuje se automaticky přes JS) -->
             <div class="grid" id="portfolio-grid"></div>
         </section>
 
-        <!-- SEKCE 2: KONTAKT -->
         <section id="contact-section" class="content-section">
             <h2>Kontaktuj mě 📞</h2>
             <p class="section-desc">Máš zájem o spolupráci nebo jen pokec? Ozvi se mi.</p>
@@ -71,7 +69,6 @@
 
     </div>
 
-    <!-- MODÁLNÍ OKNO PRO ZOBRAZENÍ DETAILU FOTKY (LIGHTBOX) -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
         <div class="lightbox-content" onclick="event.stopPropagation()">
