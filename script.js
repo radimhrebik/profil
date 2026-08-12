@@ -12,7 +12,7 @@ const portfolioData = [
         desc: "Detailní záběr na skleněnou fasádu nové kancelářské budovy v Praze. Zaměřeno na odrazy nebe a geometrické tvary."
     },
     {
-        image: "fotky/landstejn.jpg",
+        image: "fotky/landstejn.JPG",
         title: "Zeď hradu Landštejn 🏰",
         desc: "Pozdější odpolední fotografie pod zapadajícím sluncem, focena skoro od země. Cílem bylo zachytit pocit krásné stavby a její historickou atmosféru."
     },
