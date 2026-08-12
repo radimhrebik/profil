@@ -2,12 +2,12 @@
 // Přidat novou fotku je hrozně snadné: stačí zkopírovat jeden blok {} a přepsat v něm hodnoty.
 const portfolioData = [
     {
-        image: "fotky/pole.jpg", // Název souboru tvé fotky v téže složce (může být i odkaz z internetu)
+        image: "fotky/vez.jpg", // Název souboru tvé fotky v téže složce (může být i odkaz z internetu)
         title: "Krajina obilného pole ☀️",
         desc: "Foceno v odpoledních hodinách, ještě s výraznějším sluncem. Cílem bylo zachytit krásné modré nebe a kontrastní barvy zralého obilí."
     },
     {
-        image: "fotky/slunecnice1.JPG",
+        image: "fotky/zetor.JPG",
         title: "Slunečnice při slunci za mrakem. ☁️",
         desc: "Detailní záběr na skleněnou fasádu nové kancelářské budovy v Praze. Zaměřeno na odrazy nebe a geometrické tvary."
     },
