@@ -7,7 +7,7 @@ const portfolioData = [
         desc: "Foceno v odpoledních hodinách, ještě s výraznějším sluncem. Cílem bylo zachytit krásné modré nebe a kontrastní barvy zralého obilí."
     },
     {
-        image: "fotky/slunecnice1.jpg",
+        image: "fotky/slunecnice1.JPG",
         title: "Slunečnice při slunci za mrakem. ☁️",
         desc: "Detailní záběr na skleněnou fasádu nové kancelářské budovy v Praze. Zaměřeno na odrazy nebe a geometrické tvary."
     },
@@ -17,7 +17,7 @@ const portfolioData = [
         desc: "Pozdější odpolední fotografie pod zapadajícím sluncem, focena skoro od země. Cílem bylo zachytit pocit krásné stavby a její historickou atmosféru."
     },
     {
-        image: "fotky/fotka.jpg",
+        image: "fotky/fotka.JPG",
         title: "Design mobilní aplikace",
         desc: "Návrh uživatelského rozhraní (UI/UX) pro aplikaci sledující pitný režim. Čistý, minimalistický styl laděný do tmavých barev."
     }
