@@ -39,7 +39,7 @@ function renderGrid(containerId, dataArray, sectionType) {
         card.setAttribute('onclick', `openLightbox('${sectionType}', ${index})`);
 
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybí+Fotka'">
+            <img src="${item.image}" alt="${item.title}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
             <div class="item-info">
                 <h3>${item.title}</h3>
                 <p>${item.desc}</p>
