@@ -1,6 +1,5 @@
-// DYNAMICKÁ DATA PORTFOLIA (Tady si můžeš nahrávat fotky v libovolném množství a pořadí)
-// Přidat novou fotku je hrozně snadné: stačí zkopírovat jeden blok {} a přepsat v něm hodnoty.
-const portfolioData = [
+// DYNAMICKÁ DATA PRO FOTOGALERII (Nová sekce před portfoliem)
+const galleryData = [
     {
         image: "fotky/vez.jpg", // Název souboru tvé fotky v téže složce (může být i odkaz z internetu)
         title: "Věž kostela sv. Maří Magdalény v Blatě ⛪",
@@ -19,17 +18,25 @@ const portfolioData = [
     // Sem můžeš pod sebe vkládat další a další položky podle stejného vzoru!
 ];
 
-// FUNKCE PRO AUTOMATICKÉ VYGENEROVÁNÍ GALERIE
-function renderPortfolio() {
-    const grid = document.getElementById('portfolio-grid');
+// DYNAMICKÁ DATA PROJEKTY (Portfolio)
+const portfolioData = [
+    {
+        image: "fotky/",
+        title: "---",
+        desc: "---"
+    }
+];
+
+// POMOCNÁ FUNKCE PRO PROKRESLENÍ MŘÍŽKY
+function renderGrid(containerId, dataArray, sectionType) {
+    const grid = document.getElementById(containerId);
+    if (!grid) return;
     grid.innerHTML = ""; // Vyčistíme mřížku
 
-    portfolioData.forEach((item, index) => {
-        // Vytvoříme HTML strukturu pro každou kartu
+    dataArray.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = "grid-item";
-        // Nastavíme, aby se po kliknutí otevřel detail fotky s jejím indexem
-        card.setAttribute('onclick', `openLightbox(${index})`);
+        card.setAttribute('onclick', `openLightbox('${sectionType}', ${index})`);
 
         card.innerHTML = `
             <img src="${item.image}" alt="${item.title}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
@@ -43,30 +50,33 @@ function renderPortfolio() {
     });
 }
 
-// PŘEPÍNÁNÍ SEKCI (PORTFOLIO / KONTAKT)
+// VYKRESLENÍ VŠECH GALERIÍ
+function renderAllSections() {
+    renderGrid('gallery-grid', galleryData, 'gallery');
+    renderGrid('portfolio-grid', portfolioData, 'portfolio');
+}
+
+// PŘEPÍNÁNÍ SEKCE (FOTOGALERIE / PORTFOLIO / KONTAKT)
 function switchSection(sectionId) {
-    // Skryjeme všechny sekce a odebereme aktivní třídu z tlačítek
     document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
 
-    // Zobrazíme vybranou sekci a aktivujeme odpovídající tlačítko
     document.getElementById(`${sectionId}-section`).classList.add('active');
-    
-    // Najdeme tlačítko, které volalo akci, a označíme ho jako aktivní
     event.currentTarget.classList.add('active');
 }
 
 // OTEVŘENÍ DETAILU (LIGHTBOXU)
-function openLightbox(index) {
-    const item = portfolioData[index];
+function openLightbox(sectionType, index) {
+    // Podle typu zvolíme správný zdroj dat
+    const dataArray = sectionType === 'gallery' ? galleryData : portfolioData;
+    const item = dataArray[index];
+    
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxTitle = document.getElementById('lightbox-title');
     const lightboxDesc = document.getElementById('lightbox-desc');
 
-    // Vyplníme data do zvětšeného okna
     lightboxImg.src = item.image;
-    // Pokud obrázek neexistuje, nahradíme ho šedým zástupným obrázkem
     lightboxImg.onerror = function() {
         this.src = 'https://placehold.co/800x600/222/555?text=Fotka+Nenalezena';
     };
@@ -74,7 +84,6 @@ function openLightbox(index) {
     lightboxTitle.innerText = item.title;
     lightboxDesc.innerText = item.desc;
 
-    // Zobrazíme lightbox (změníme styl na flex pro centrování)
     lightbox.style.display = 'flex';
 }
 
@@ -83,5 +92,5 @@ function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
 
-// Spustíme vykreslení portfolia ihned po načtení stránky
-window.onload = renderPortfolio;
+// Spustíme vykreslení po načtení stránky
+window.onload = renderAllSections;
