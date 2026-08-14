@@ -1,45 +1,65 @@
-// DYNAMICKÁ DATA PRO FOTOGALERII (Nová sekce před portfoliem)
+// DYNAMICKÁ DATA PRO FOTOGALERII
 const galleryData = [
     {
-        image: "fotky/vez.jpg", // Název souboru tvé fotky v téže složce (může být i odkaz z internetu)
+        images: ["fotky/vez.jpg"],
         title: "Věž kostela sv. Maří Magdalény v Blatě ⛪",
         desc: "Pohled na menší věž kostelu v Blatě u Nové Bystřice. Slunce v daný moment zašlo za mrak, a proto se zde ukazují tmavší odstíny a na pozadí modrá obloha."
     },
     {
-        image: "fotky/zetor.JPG",
-        title: "Kapota zemědělského stroje Zetor 6340 🚜",
-        desc: "Detailní záběr staršího a zanedbaného stroje Zetor 6340. Pohled byl zachycen při dopoledních hodinách na ostrém slunci."
+        images: [
+            "fotky/zetor.JPG",
+            "fotky/zetor2.JPG"
+        ],
+        title: "Pohled na Zetor 6340 🚜",
+        desc: "Soubor fotografií zachycující Zetor 6340 v horším kosmetickém stavu. Fotografie pořízeny pod ostrým dopoledním sluncem."
     },
     {
-        image: "fotky/landstejn.JPG",
+        images: ["fotky/landstejn.JPG"],
         title: "Zeď hradu Landštejn 🏰",
         desc: "Pozdější odpolední fotografie pod zapadajícím sluncem, focena skoro od země. Cílem bylo zachytit pocit krásné stavby a její historickou atmosféru."
     }
-    // Sem můžeš pod sebe vkládat další a další položky podle stejného vzoru!
 ];
 
-// DYNAMICKÁ DATA PROJEKTY (Portfolio)
+// DYNAMICKÁ DATA PORTFOLIA (Více fotek na jeden projekt)
 const portfolioData = [
     {
-        image: "fotky/",
+        images: [],
         title: "---",
         desc: "---"
-    }
+    },
+   
 ];
 
-// POMOCNÁ FUNKCE PRO PROKRESLENÍ MŘÍŽKY
+// Proměnné pro sledování stavu v lightboxu
+let currentSectionData = null;
+let currentItemIndex = 0;
+let currentImageIndex = 0;
+
+// POMOCNÁ FUNKCE PRO PROKRESLENÍ MŘÍŽKY (S ODZNAKEM PRO VÍCE FOTEK)
 function renderGrid(containerId, dataArray, sectionType) {
     const grid = document.getElementById(containerId);
     if (!grid) return;
-    grid.innerHTML = ""; // Vyčistíme mřížku
+    grid.innerHTML = "";
 
     dataArray.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = "grid-item";
         card.setAttribute('onclick', `openLightbox('${sectionType}', ${index})`);
 
+        // Náhledový obrázek (použije se první fotka z pole images)
+        const coverImg = (item.images && item.images.length > 0) ? item.images[0] : "";
+        const imgCount = item.images ? item.images.length : 0;
+
+        // Pokud je fotek více než 1, vytvoříme odznak (badge)
+        const countBadge = imgCount > 1 
+            ? `<span class="badge-multi-photo">🖼️ ${imgCount}</span>` 
+            : '';
+
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
+            <div class="card-img-wrapper">
+                <img src="${coverImg}" alt="${item.title}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
+                ${countBadge}
+            </div>
             <div class="item-info">
                 <h3>${item.title}</h3>
                 <p>${item.desc}</p>
@@ -67,30 +87,70 @@ function switchSection(sectionId) {
 
 // OTEVŘENÍ DETAILU (LIGHTBOXU)
 function openLightbox(sectionType, index) {
-    // Podle typu zvolíme správný zdroj dat
-    const dataArray = sectionType === 'gallery' ? galleryData : portfolioData;
-    const item = dataArray[index];
-    
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxDesc = document.getElementById('lightbox-desc');
+    currentSectionData = sectionType === 'gallery' ? galleryData : portfolioData;
+    currentItemIndex = index;
+    currentImageIndex = 0; // Začínáme od první fotky
 
-    lightboxImg.src = item.image;
-    lightboxImg.onerror = function() {
-        this.src = 'https://placehold.co/800x600/222/555?text=Fotka+Nenalezena';
-    };
-    
-    lightboxTitle.innerText = item.title;
-    lightboxDesc.innerText = item.desc;
+    updateLightboxImage();
 
-    lightbox.style.display = 'flex';
+    const item = currentSectionData[currentItemIndex];
+    document.getElementById('lightbox-title').innerText = item.title;
+    document.getElementById('lightbox-desc').innerText = item.desc;
+
+    document.getElementById('lightbox').style.display = 'flex';
 }
 
-// ZAVŘENÍ DETAILU (LIGHTBOXU)
+// AKTUALIZACE ZOBRAZENÉ FOTKY A ŠIPEK
+function updateLightboxImage() {
+    const item = currentSectionData[currentItemIndex];
+    const lightboxImg = document.getElementById('lightbox-img');
+    const counter = document.getElementById('lightbox-counter');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    const totalImages = item.images ? item.images.length : 0;
+
+    if (totalImages > 0) {
+        lightboxImg.src = item.images[currentImageIndex];
+        lightboxImg.onerror = function() {
+            this.src = 'https://placehold.co/800x600/222/555?text=Fotka+Nenalezena';
+        };
+    }
+
+    // Pokud je více než 1 fotka, zobrazíme šipky a počítadlo
+    if (totalImages > 1) {
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+        counter.style.display = 'block';
+        counter.innerText = `${currentImageIndex + 1} / ${totalImages}`;
+    } else {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        counter.style.display = 'none';
+    }
+}
+
+// POSUN MEZI FOTKAMI (ŠIPKY)
+function changeImage(direction) {
+    const item = currentSectionData[currentItemIndex];
+    const totalImages = item.images.length;
+
+    currentImageIndex += direction;
+
+    // Cyklení (z poslední fotky zpět na první a naopak)
+    if (currentImageIndex >= totalImages) {
+        currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+        currentImageIndex = totalImages - 1;
+    }
+
+    updateLightboxImage();
+}
+
+// ZAVŘENÍ DETAILU
 function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
 
-// Spustíme vykreslení po načtení stránky
+// Spuštění po načtení
 window.onload = renderAllSections;
