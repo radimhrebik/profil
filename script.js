@@ -7,7 +7,7 @@ const galleryData = [
     },
     {
         images: [
-            "fotky/zetor3.JPG",
+            "fotky/zetor3.jpg",
             "fotky/zetor.JPG",
             "fotky/zetor2.JPG"
         ],
