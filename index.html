@@ -5,48 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radim Hřebík - Osobní Web</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Knihovna ikon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <!-- Basic SEO Meta Tags -->
+    <title>Radim Hřebík | Photographer & Developer</title>
+    <meta name="description" content="Personal portfolio of photographer and developer Radim Hřebík. Explore the photo gallery and selected projects.">
+    <meta name="author" content="Radim Hřebík">
+
+    <!-- Open Graph Meta Tags (for Facebook, Messenger, LinkedIn, iMessage) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Radim Hřebík | Personal Website">
+    <meta property="og:description" content="Personal portfolio of a photographer and developer. Photo gallery, selected projects, and contact info.">
+
+    <!-- Twitter Card Meta Tags (for X / Twitter / Discord) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Radim Hřebík | Personal Website">
+    <meta name="twitter:description" content="Personal Website of a photographer and developer. Photo gallery, selected projects, and contact info.">
+
+    <!-- Browser toolbar color on mobile devices (Safari, Chrome on Android) -->
+    <meta name="theme-color" content="#121212">
+
+
 </head>
 <body>
 
     <div class="container">
         
+        <!-- HLAVIČKA -->
         <header class="profile-header">
+
             <img src="images/profilovka.png" alt="Moje profilová fotka" class="profile-img">
-            <h1>Ahoj, já jsem Radim</h1>
-            <p class="subtitle">Vítám tě na mém webu. Tady najdeš moje projekty, fotky a kontakt.</p>
-            
+            <h1>Hello, I'm Radim</h1>
+            <p class="subtitle">Welcome to my website. Here you can find my projects, photos, and contact information.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/rada.hrebik/" target="_blank" class="social-btn" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/radimhrebik" target="_blank" class="social-btn" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://discord.com/users/123456789" target="_blank" class="social-btn" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#contact" class="social-btn" title="Kontakt" onclick="switchSection('contact'); return false;">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
             <div class="nav-tabs">
-                
-                <button class="tab-btn active" onclick="switchSection('portfolio')">📷 Projekty</button>
-                <button class="tab-btn" onclick="switchSection('gallery')">🖼️ Fotogalerie</button>
-                <button class="tab-btn" onclick="switchSection('contact')">📧 Kontakt</button>
+                <button class="tab-btn active" onclick="switchSection('portfolio')">📷 Projects</button>
+                <button class="tab-btn" onclick="switchSection('gallery')">🖼️ Photo Gallery</button>
+                <button class="tab-btn" onclick="switchSection('contact')">📧 Contact</button>
             </div>
         </header>
 
+        <!-- SEKCE 1: FOTOGALERIE -->
         <section id="gallery-section" class="content-section">
-            <h2>Moje fotogalerie 📸</h2>
-            <p class="section-desc">Kliknutím na jakoukoliv fotku ji zvětšíš i s detailem.</p>
+            <h2>My Fotogalery 📸</h2>
+            <p class="section-desc">Click to see the full-size images.</p>
+            <!-- KATEGORIE / TAGY PRO FILTROVÁNÍ -->
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+                <button class="filter-btn" onclick="filterGallery('krajina')">Nature</button>
+                <button class="filter-btn" onclick="filterGallery('architektura')">Architecture</button>
+                <button class="filter-btn" onclick="filterGallery('technika')">Vehicles & Machinery</button>
+            </div>
             <div class="grid" id="gallery-grid"></div>
         </section>
 
+        <!-- SEKCE 2: PORTFOLIO / PROJEKTY -->
         <section id="portfolio-section" class="content-section active">
-            <h2>Moje tvorba/projekty 🎨</h2>
-            <p class="section-desc">Kliknutím na jakýkoliv projekt otevřeš detail s fotkami.</p>
+            <h2>My Projects 🎨</h2>
+            <p class="section-desc">Click on any project to view the details.</p>
             <div class="grid" id="portfolio-grid"></div>
         </section>
 
+        <!-- SEKCE 3: KONTAKT -->
         <section id="contact-section" class="content-section">
-            <h2>Kontaktuj mě 📞</h2>
-            <p class="section-desc">Máš zájem o spolupráci nebo jen pokec? Ozvi se mi.</p>
-            
+            <h2>Contact Me 📞</h2>
+            <p class="section-desc">Are you interested in collaborating or just want to chat? Reach out to me.</p>
+
             <div class="contact-card">
                 <div class="contact-item">
                     <span class="icon">📩</span>
                     <div>
                         <strong>E-mail</strong>
-                        <p><a href="mailto:rada.hrebik@gmail.com">rada.hrebik@gmail.com</a></p>
+                        <p>
+                            <a href="#copy-email" title="Kopírovat e-mail" onclick="copyEmailToClipboard(); return false;">rada.hrebik@gmail.com</a>
+                        </p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -56,18 +105,12 @@
                         <p><a href="https://www.instagram.com/rada.hrebik/" target="_blank">@rada.hrebik</a></p>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <span class="icon">💼</span>
-                    <div>
-                        <strong>Discord</strong>
-                        <p><a href="#" target="_blank">Již Brzy</a></p>
-                    </div>
-                </div>
             </div>
         </section>
 
     </div>
 
+    <!-- MODÁLNÍ OKNO (LIGHTBOX) -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
         
@@ -79,13 +122,45 @@
             </div>
             
             <div class="lightbox-caption">
-                <h3 id="lightbox-title">Název fotky</h3>
-                <p id="lightbox-desc">Popis fotky</p>
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
                 <span id="lightbox-counter" class="lightbox-counter"></span>
             </div>
         </div>
     </div>
 
+    <!-- FIXNÍ TLAČÍTKO "O MNĚ" V PRAVÉM DOLNÍM ROHU -->
+    <a href="#about" class="about-floating-btn" title="O mně" onclick="openAboutModal(); return false;">
+        <i class="fas fa-circle-question"></i>
+    </a>
+
+    <!-- MODÁLNÍ OKNO ABOUT ME (STYLIZOVANÉ JAKO LIGHTBOX) -->
+    <div id="about-modal" class="lightbox" onclick="closeAboutModal()">
+        <span class="close-btn" onclick="closeAboutModal()">&times;</span>
+        
+        <div class="lightbox-content about-content" onclick="event.stopPropagation()">
+            <div class="lightbox-caption">
+                <h2>About me 🧑‍💻</h2>
+                <p>Hello, my name is Radim, and I'm an amateur photographer with passion for computer technology, coding and gaming.</p>
+                <p>I love exploring new things, capturing atmosphere in my photos, and constantly learning new technologies.</p>
+                <p>I'm using FujiFilm Finepix s8000fd from 2007, which is pretty old, but still serves me well. For learning the basics, it's okay.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO PRVEK (vlož cestu k vlastnímu MP3 souboru) -->
+    <audio id="bg-audio" loop src="zvuky/ambient.mp3"></audio>
+
+    <!-- TLAČÍTKO PRO OVLÁDÁNÍ ZVUKU -->
+    <button id="audio-btn" class="audio-floating-btn" title="Zapnout/Vypnout zvuk" onclick="toggleAudio()">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- TOAST OZNÁMENÍ -->
+    <div id="toast" class="toast">E-mail copied to clipboard! 📋</div>
+
+    <!-- Načtení JavaScriptu -->
     <script src="script.js"></script>
+
 </body>
 </html>
