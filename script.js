@@ -37,6 +37,12 @@ const galleryData = [
         title: "",
         desc: "",
         category: "technika"
+    },
+    {
+        images: ["fotky/krizek.jpg"],
+        title: "",
+        desc: "",
+        category: "krajina architektura"
     }
 ];
 
