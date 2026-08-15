@@ -21,13 +21,13 @@ const galleryData = [
         category:"technika"
     },
     {
-        images: ["fotky/landstejn.jpg"],
+        images: ["fotky/landstejn.JPG"],
         title: "",
         desc: "",
         category: "architektura"
     },
     {
-        images: ["fotky/pole.jpg"],
+        images: ["fotky/pole1111.jpg"],
         title: "",
         desc: "",
         category: "krajina"
