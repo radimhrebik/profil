@@ -91,7 +91,7 @@ function renderGrid(containerId, dataArray, sectionType) {
 
         card.innerHTML = `
             <div class="card-img-wrapper">
-                <img src="${coverImg}" alt="${item.title || ''}" class="item-img" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
+                <img src="${coverImg}" alt="${item.title || ''}" class="item-img" loading="lazy" onerror="this.src='https://placehold.co/600x400/222/555?text=Chybi+Fotka'">
                 ${countBadge}
             </div>
             ${infoBlock}
