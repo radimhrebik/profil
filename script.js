@@ -43,6 +43,12 @@ const galleryData = [
         title: "",
         desc: "",
         category: "krajina architektura"
+    },
+    {
+        images: ["fotky/newholland.jpg"],
+        title: "",
+        desc: "",
+        category: "technika"
     }
 ];
 
