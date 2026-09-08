@@ -3,6 +3,12 @@
 // Nezapomenou přiřazovat tagy!
 // krajina technika architektura
 const galleryData = [
+        {
+        images: ["fotky/moto1.jpg"],
+        title: "",
+        desc: "",
+        category: "technika"
+    },
     {
         images: ["fotky/vez.jpg"],
         title: "",
