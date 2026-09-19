@@ -60,6 +60,14 @@ const galleryData = [
 
 // DATA PORTFOLIA
 const portfolioData = [
+    {
+        images: [
+            "fotky/blender1.png",
+            "fotky/blender2.png"
+        ],
+        title: "Low Poly Blender Car ",
+        desc: "First try on learning Blender. This is the result so far.",
+    }
 ];
 
 // Proměnné pro sledování stavu v lightboxu
