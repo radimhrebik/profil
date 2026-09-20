@@ -65,8 +65,16 @@ const portfolioData = [
             "fotky/blender1.png",
             "fotky/blender2.png"
         ],
-        title: "Low Poly Blender Car ",
+        title: "First Blender Project (Low Poly Car)",
         desc: "First try on learning Blender. This is the result so far.",
+    },
+    {
+        images: [
+            "fotky/blender3.png",
+            "fotky/blender4.png"
+        ],
+        title: "Low Poly Pickup Truck",
+        desc: "Second small project in Blender. Tried to focus more on details, but still keep it simple and low poly.",
     }
 ];
 
