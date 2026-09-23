@@ -55,6 +55,12 @@ const galleryData = [
         title: "",
         desc: "",
         category: "technika"
+    },
+    {
+        images: ["fotky/jhbudova.jpg"],
+        title: "",
+        desc: "",
+        category: "architektura"
     }
 ];
 
